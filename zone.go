@@ -67,13 +67,14 @@ func (rootZone RootZone) Id() int {
     return rootZone.Zone.Id
 }
 
-func (zone *Zone) Delete() error{
+func (zone *Zone) Delete() (bool, error) {
     path := zonePath(*zone)
-
     err := zone.pointClient.Delete(path, nil)
-    return err
+    if err != nil {
+        return false, err
+    }
+    return true, nil
 }
-
 
 func (client *PointClient) CreateZone(zone *Zone) (bool, error) {
     zone.pointClient = client

@@ -62,10 +62,13 @@ func (zone *Zone) Records() ([]Record, error) {
     return records, err
 }
 
-func (record *Record) Delete() error{
+func (record *Record) Delete() (bool, error) {
     zone := Zone{Id: record.ZoneId}
     err := record.pointClient.Delete(recordPath(zone, record), nil)
-    return err
+    if err != nil {
+        return false, err
+    }
+    return true, nil
 }
 
 func (client *PointClient) CreateRecord(record *Record) (bool, error) {
