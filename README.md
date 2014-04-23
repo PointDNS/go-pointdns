@@ -3,6 +3,10 @@ go-pointdns
 
 This library provides easy access to point zone & record management. For information about the services offered on Point see [the website](http://pointhq.com)
 
+## Authentication
+
+To access your Point account, you'll need to define your username & password. The username is your email address and the password is the API token which, can be found in My Account tab.
+
 ## Example
 
 ```go
