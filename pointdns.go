@@ -21,6 +21,10 @@ type PointClient struct {
     HttpClient *http.Client
 }
 
+type Resource interface {
+    Id() int
+}
+
 func NewClient(email, apiToken string) *PointClient {
     return &PointClient{Email: email, ApiToken: apiToken, HttpClient: &http.Client{}}
 }
@@ -71,7 +75,7 @@ func persisted (id int) bool {
     return false
 }
 
-func (client *PointClient) Save (path string, payload, val interface{Id() int}) error {
+func (client *PointClient) Save (path string, payload Resource, val interface{}) error {
     method := "POST"
     if persisted(payload.Id()) {
         method = "PUT"
