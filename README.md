@@ -14,7 +14,9 @@ import (
 )
 
 func main() {
-    client := pointdns.NewClient("user@exmaple.com", "6v1a532e-384g-f3345-ca34-d71a34f376545")
+    email := "user@example.com"
+    apiToken := "6v1a532e-384g-f3345-ca34-d71a34f376545"
+    client := pointdns.NewClient(email, apiToken)
 
     // Create a new zone
     newZone := pointdns.Zone{Name: "example.com"}
